@@ -2,27 +2,16 @@
 
 import React from 'react'
 import NavBar from './NavBar.jsx'
+import StatContainer from './StatContainer.jsx'
+import GamesContainer from './GamesContainer.jsx'
 
 export default class IndexPage extends React.Component {
   render() {
     return (
-      <div className="Main">
+      <div className="home">
         {<NavBar/>}
-
-        <div className="StatContainer">
-          <h1 className="Stats">Stats</h1>
-          <p className="AccountStatBox">Game Stats...</p>
-          <div className="AccountAchievementProgress"></div>
-        </div>
-
-        <div className="GamesContainer">
-          <h1 className="Games">Games</h1>
-            <div className="GamesList">
-              <img className="GameImageN"/>
-              <h3 className="GameN">GameN</h3>
-            </div>
-        </div>
-
+        {<StatContainer/>}
+        {<GamesContainer/>}
       </div>
     );
   }
