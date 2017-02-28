@@ -1,21 +1,18 @@
 'use strict';
 
 import React from 'react'
+import NavBar from './NavBar.jsx'
 
 export default class IndexPage extends React.Component {
   render() {
     return (
       <div className="Main">
-        <div className="NavBar">
-          <img className="SteamAvatar"/>
-          <h1 className="SteamId">SteamId Label</h1>
-        </div>
+        {<NavBar/>}
 
         <div className="StatContainer">
           <h1 className="Stats">Stats</h1>
           <p className="AccountStatBox">Game Stats...</p>
-          <div className="AccountAchievementProgress"> PROGRESS
-          </div>
+          <div className="AccountAchievementProgress"></div>
         </div>
 
         <div className="GamesContainer">
@@ -25,6 +22,7 @@ export default class IndexPage extends React.Component {
               <h3 className="GameN">GameN</h3>
             </div>
         </div>
+
       </div>
     );
   }
