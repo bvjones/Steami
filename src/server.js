@@ -1,4 +1,7 @@
+import dotenv from 'dotenv';
+dotenv.config();
 import path from 'path';
+import request from 'request';
 import { Server } from 'http';
 import Express from 'express';
 import React from 'react';
@@ -15,6 +18,14 @@ app.set('views', path.join(__dirname, 'views'));
 
 // define the folder that will be used for static assets
 app.use(Express.static(path.join(__dirname, 'static')));
+
+app.get('/steam/player/:id', (req,res) => {
+  let url = "http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=" + process.env.STEAM_KEY + "&steamids=" + req.params.id
+  request.get(url, (error, steamReq, steamBody) => {
+    res.setHeader('Content-Type', 'application/json');
+    res.send(steamBody);
+  });
+});
 
 // universal routing and rendering
 app.get('*', (req, res) => {
