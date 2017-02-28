@@ -1,4 +1,4 @@
-const games = {
+const gameslist = {
 	"response": {
 		"game_count": 45,
 		"games": [
@@ -366,4 +366,4 @@ const games = {
 	}
 }
 
-export default games
+export default gameslist
