@@ -43,6 +43,15 @@ app.get('/steam/player/:id/achievements/:game_id', (req,res) => {
   });
 });
 
+app.get('/steam/games/:game_id/achievements', (req,res) => {
+  let url = "http://api.steampowered.com/ISteamUserStats/GetGlobalAchievementPercentagesForApp/v0002/?gameid=" + req.params.game_id + "&format=json"
+  request.get(url, (error, steamReq, steamBody) => {
+    res.setHeader('Content-Type', 'application/json');
+    res.send(steamBody);
+  });
+});
+
+
 // universal routing and rendering
 app.get('*', (req, res) => {
   match(
