@@ -1,4 +1,4 @@
-{
+const games = {
 	"response": {
 		"game_count": 45,
 		"games": [
@@ -365,3 +365,5 @@
 
 	}
 }
+
+export default games

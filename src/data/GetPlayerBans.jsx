@@ -1,4 +1,4 @@
-{
+const bans = {
 	"players": [
 		{
 			"SteamId": "76561197980367679",
@@ -10,5 +10,6 @@
 			"EconomyBan": "none"
 		}
 	]
-
 }
+
+export default bans
