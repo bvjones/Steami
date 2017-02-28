@@ -27,6 +27,22 @@ app.get('/steam/player/:id', (req,res) => {
   });
 });
 
+app.get('/steam/player/:id/games', (req,res) => {
+  let url = "http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=" + process.env.STEAM_KEY + "&steamid=" + req.params.id + "&include_appinfo=1&include_played_free_games=1&format=json"
+  request.get(url, (error, steamReq, steamBody) => {
+    res.setHeader('Content-Type', 'application/json');
+    res.send(steamBody);
+  });
+});
+
+app.get('/steam/player/:id/achievements/:game_id', (req,res) => {
+  let url = "http://api.steampowered.com/ISteamUserStats/GetPlayerAchievements/v0001/?appid=" + req.params.game_id + "&key=" + process.env.STEAM_KEY + "&steamid=" + req.params.id
+  request.get(url, (error, steamReq, steamBody) => {
+    res.setHeader('Content-Type', 'application/json');
+    res.send(steamBody);
+  });
+});
+
 // universal routing and rendering
 app.get('*', (req, res) => {
   match(
