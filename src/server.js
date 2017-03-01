@@ -12,6 +12,8 @@ import { renderToString } from 'react-dom/server';
 import { match, RouterContext } from 'react-router';
 import routes from './routes';
 import NotFoundPage from './components/NotFoundPage';
+import FirebaseStoreFactory from 'connect-firebase';
+const FirebaseStore = FirebaseStoreFactory(session);
 
 // initialize the server and configure support for ejs templates
 const app = new Express();
