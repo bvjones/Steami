@@ -1,7 +1,6 @@
 'use strict';
 
 import React from 'react'
-import gameslist from '../data/GetOwnedGames.jsx';
 import Game from './Game.jsx'
 
 export default class GamesPresentationContainer extends React.Component {
