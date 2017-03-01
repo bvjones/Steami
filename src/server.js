@@ -18,12 +18,66 @@ import { renderToString } from 'react-dom/server';
 import { match, RouterContext } from 'react-router';
 import routes from './routes';
 import NotFoundPage from './components/NotFoundPage';
+// var OpenIDStrategy = require('passport-openid').Strategy;
+import {Strategy as OpenIDStrategy} from 'passport-openid';
+import passport from 'passport';
 
 // initialize the server and configure support for ejs templates
 const app = new Express();
 const server = new Server(app);
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
+
+var SteamStrategy = new OpenIDStrategy({
+        // OpenID provider configuration
+        providerURL: 'http://steamcommunity.com/openid',
+        stateless: true,
+        // How the OpenID provider should return the client to us
+        returnURL: 'http://localhost:3000/auth/openid/return',
+        realm: 'http://localhost:3000/',
+    },
+    // This is the "validate" callback, which returns whatever object you think
+    // should represent your user when OpenID authentication succeeds.  You
+    // might need to create a user record in your database at this point if
+    // the user doesn't already exist.
+    function(identifier, done) {
+      console.log(identifier)
+        // The done() function is provided by passport.  It's how we return
+        // execution control back to passport.
+        // Your database probably has its own asynchronous callback, so we're
+        // faking that with nextTick() for demonstration.
+        // process.nextTick(function () {
+        //     // Retrieve user from Firebase and return it via done().
+            var user = {
+                identifier: identifier,
+                // Extract the Steam ID from the Claimed ID ("identifier")
+                steamId: identifier.match(/\d+$/)[0]
+            };
+        //     // In case of an error, we invoke done(err).
+        //     // If we cannot find or don't like the login attempt, we invoke
+        //     // done(null, false).
+        //     // If everything went fine, we invoke done(null, user).
+            return done(null, user);
+    });
+passport.use(SteamStrategy);
+
+passport.serializeUser(function(user, done) {
+    done(null, user.identifier);
+});
+
+passport.deserializeUser(function(identifier, done) {
+    // For this demo, we'll just return an object literal since our user
+    // objects are this trivial.  In the real world, you'd probably fetch
+    // your user object from your database here.
+    done(null, {
+        identifier: identifier,
+        steamId: identifier.match(/\d+$/)[0]
+    });
+});
+
+app.use(passport.initialize());
+app.use(passport.session());
+
 
 // define the folder that will be used for static assets
 app.use(Express.static(path.join(__dirname, 'static')));
@@ -89,11 +143,17 @@ app.get('/steam/games/:game_id/achievements', (req,res) => {
   });
 });
 
+app.post('/auth/openid', passport.authenticate('openid'));
+
+app.get('/auth/openid/return', passport.authenticate('openid', {
+   'successRedirect': '/',
+   'failureRedirect': '/auth/failure'
+}));
 
 // universal routing and rendering
 app.get('*', (req, res) => {
-  console.log(req);
   console.log(req.sessionID);
+  console.log(req.session);
   match(
     { routes, location: req.url },
     (err, redirectLocation, renderProps) => {
