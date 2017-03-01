@@ -3,7 +3,6 @@
 import React from 'react'
 import player from '../data/GetPlayerSummaries.jsx';
 import bans from '../data/GetPlayerBans.jsx';
-import gameslist from '../data/GetOwnedGames.jsx';
 
 export default class StatContainer extends React.Component {
   render() {
