@@ -8,12 +8,15 @@ module.exports = {
     filename: 'bundle.js'
   },
   module: {
+    preLoaders: [
+          { test: /\.json$/, loader: "json-loader"}
+        ],
     loaders: [{
       test: path.join(__dirname, 'src'),
       loader: ['babel-loader'],
       query: {
         cacheDirectory: 'babel_cache',
-        presets: ['react', 'es2015']
+        presets: ['react', 'es2015', "stage-0"]
       }
     }]
   },
