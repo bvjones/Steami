@@ -2,6 +2,7 @@
 
 import React from 'react'
 import GamesPresentationContainer from './GamesPresentationContainer.jsx'
+import fetch from 'node-fetch'
 
 export default class GamesDataContainer extends React.Component {
   constructor(props) {
@@ -12,8 +13,8 @@ export default class GamesDataContainer extends React.Component {
     };
   }
 
-  componentDidMount() {
-    fetch("/steam/player/76561197980367679/games")
+  componentWillMount() {
+    fetch("http://localhost:3000/steam/player/76561197980367679/games")
       .then(res => {
         console.log("Got response:");
         console.log(res);
@@ -22,13 +23,15 @@ export default class GamesDataContainer extends React.Component {
             console.log("Made JSON:");
             console.log(json);
             this.setState({ games: json })
+            console.log("1");
           });
   }
 
 
   render() {
+    console.log("2");
     return (
-      <GamesPresentationContainer/>
+      <GamesPresentationContainer games={this.state.games}/>
     );
   }
 }

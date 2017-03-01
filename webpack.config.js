@@ -8,6 +8,9 @@ module.exports = {
     filename: 'bundle.js'
   },
   module: {
+    preLoaders: [
+          { test: /\.json$/, loader: "json-loader"}
+        ],
     loaders: [{
       test: path.join(__dirname, 'src'),
       loader: ['babel-loader'],
