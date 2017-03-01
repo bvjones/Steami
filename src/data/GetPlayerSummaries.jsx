@@ -1,0 +1,24 @@
+const player = {
+	"response": {
+		"players": [
+			{
+				"steamid": "76561197980367679",
+				"communityvisibilitystate": 3,
+				"profilestate": 1,
+				"personaname": "chinito!",
+				"lastlogoff": 1487945874,
+				"commentpermission": 1,
+				"profileurl": "http://steamcommunity.com/profiles/76561197980367679/",
+				"avatar": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/da/da06adbb6979416158d991f426d8327a425f502b.jpg",
+				"avatarmedium": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/da/da06adbb6979416158d991f426d8327a425f502b_medium.jpg",
+				"avatarfull": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/da/da06adbb6979416158d991f426d8327a425f502b_full.jpg",
+				"personastate": 0,
+				"primaryclanid": "103582791429521408",
+				"timecreated": 1137275826,
+				"personastateflags": 0
+			}
+		]
+
+	}
+}
+export default player
