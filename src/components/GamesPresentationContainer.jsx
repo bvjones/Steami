@@ -4,10 +4,10 @@ import React from 'react'
 import gameslist from '../data/GetOwnedGames.jsx';
 import Game from './Game.jsx'
 
-export default class GamesContainer extends React.Component {
+export default class GamesPresentationContainer extends React.Component {
   render() {
     return (
-      <div className="GamesContainer">
+      <div className="games-presentation-container">
         <h1 className="Games">Games</h1>
           <div className="GamesList">
             <ul>{
