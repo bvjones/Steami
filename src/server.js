@@ -4,6 +4,15 @@ import path from 'path';
 import request from 'request';
 import { Server } from 'http';
 import Express from 'express';
+//Require Mongo Connection
+import mongo from 'mongodb';
+import monk from 'monk';
+var db = monk('localhost:27017/steami_test');
+//require session storage and db connection
+import session from 'express-session'
+import MongodbStoreFactory from 'connect-mongodb-session'
+const MongoDBStore = MongodbStoreFactory(session)
+//Require React and React components
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { match, RouterContext } from 'react-router';
@@ -18,6 +27,35 @@ app.set('views', path.join(__dirname, 'views'));
 
 // define the folder that will be used for static assets
 app.use(Express.static(path.join(__dirname, 'static')));
+
+//Set up Sessions
+var store = new MongoDBStore(
+   {
+     uri: 'mongodb://localhost:27017/steami_test',
+     collection: 'mySessions'
+   });
+
+ // Catch errors
+ store.on('error', function(error) {
+   assert.ifError(error);
+   assert.ok(false);
+ });
+
+ app.use(require('express-session')({
+   secret: 'This is a secret',
+   cookie: {
+     maxAge: 1000 * 60 * 60 * 24 * 7 // 1 week
+   },
+   store: store,
+   resave: true,
+   saveUninitialized: true
+ }));
+
+//Pass Mongo db to every new request
+app.use(function(req,res,next){
+ req.db = db;
+ next();
+});
 
 app.get('/steam/player/:id', (req,res) => {
   let url = "http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=" + process.env.STEAM_KEY + "&steamids=" + req.params.id
@@ -54,6 +92,8 @@ app.get('/steam/games/:game_id/achievements', (req,res) => {
 
 // universal routing and rendering
 app.get('*', (req, res) => {
+  console.log(req);
+  console.log(req.sessionID);
   match(
     { routes, location: req.url },
     (err, redirectLocation, renderProps) => {
