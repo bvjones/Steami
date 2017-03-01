@@ -112,7 +112,9 @@ app.use(function(req,res,next){
 });
 
 app.get('/steam/player/:id', (req,res) => {
-  let url = "http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=" + process.env.STEAM_KEY + "&steamids=" + req.params.id
+  let id = req.session.passport.user.match(/\d+$/)[0]
+  console.log(id);
+  let url = "http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=" + process.env.STEAM_KEY + "&steamids=" + id
   request.get(url, (error, steamReq, steamBody) => {
     res.setHeader('Content-Type', 'application/json');
     res.send(steamBody);
@@ -120,7 +122,9 @@ app.get('/steam/player/:id', (req,res) => {
 });
 
 app.get('/steam/player/:id/games', (req,res) => {
-  let url = "http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=" + process.env.STEAM_KEY + "&steamid=" + req.params.id + "&include_appinfo=1&include_played_free_games=1&format=json"
+  let id = req.session.passport.user.match(/\d+$/)[0]
+  console.log(id);
+  let url = "http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=" + process.env.STEAM_KEY + "&steamid=" + id + "&include_appinfo=1&include_played_free_games=1&format=json"
   request.get(url, (error, steamReq, steamBody) => {
     res.setHeader('Content-Type', 'application/json');
     res.send(steamBody);
