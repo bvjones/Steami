@@ -5,8 +5,6 @@ import React from 'react'
 export default class PlayerIdentity extends React.Component {
 
   loadPlayerIdentity() {
-    console.log("Here", Object.keys);
-    console.log("2. ", this.props);
     if ( Object.keys(this.props.playerSummary).length === 0) {
       return "Loading..."
     } else {
@@ -20,9 +18,6 @@ export default class PlayerIdentity extends React.Component {
   }
 
   render() {
-    console.log('rendering PlayerIdentity');
-    console.log(this.props.playerSummary);
-
     let content = this.loadPlayerIdentity();
     return (
       <div className="player-identity">

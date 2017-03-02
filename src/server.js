@@ -118,7 +118,6 @@ app.get('/steam/player', (req,res) => {
   request.get(url, (error, steamReq, steamBody) => {
     res.setHeader('Content-Type', 'application/json');
     res.send(steamBody);
-    console.log(steamBody)
   });
 });
 
@@ -171,8 +170,7 @@ app.get('/auth/openid/return', passport.authenticate('openid', {
 
 // universal routing and rendering
 app.get('*', (req, res) => {
-  console.log(req.sessionID);
-  console.log(req.session);
+  console.log('get /');
   match(
     { routes, location: req.url },
     (err, redirectLocation, renderProps) => {
