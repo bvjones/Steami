@@ -146,7 +146,19 @@ app.get('/steam/player/bans', (req,res) => {
 });
 
 app.get('/steam/player/achievements/:game_id', (req,res) => {
-  let url = "http://api.steampowered.com/ISteamUserStats/GetPlayerAchievements/v0001/?appid=" + req.params.game_id + "&key=" + process.env.STEAM_KEY + "&steamid=" + req.params.id
+  let id = req.session.passport.user.match(/\d+$/)[0]
+  console.log(id);
+  console.log("get /steam/player/achievements/gameid")
+  let url = "http://api.steampowered.com/ISteamUserStats/GetPlayerAchievements/v0001/?appid=" + req.params.game_id + "&key=" + process.env.STEAM_KEY + "&steamid=" + id
+  request.get(url, (error, steamReq, steamBody) => {
+    res.setHeader('Content-Type', 'application/json');
+    res.send(steamBody);
+  });
+});
+
+app.get('/steam/games/:game_id/schema', (req,res) => {
+  console.log("get /steam/games/gameid/schema")
+  let url = "http://api.steampowered.com/ISteamUserStats/GetSchemaForGame/v2/?key=" + process.env.STEAM_KEY + "&appid=" + req.params.game_id
   request.get(url, (error, steamReq, steamBody) => {
     res.setHeader('Content-Type', 'application/json');
     res.send(steamBody);
@@ -154,6 +166,7 @@ app.get('/steam/player/achievements/:game_id', (req,res) => {
 });
 
 app.get('/steam/games/:game_id/achievements', (req,res) => {
+  console.log("get /steam/games/gameid/achievements")
   let url = "http://api.steampowered.com/ISteamUserStats/GetGlobalAchievementPercentagesForApp/v0002/?gameid=" + req.params.game_id + "&format=json"
   request.get(url, (error, steamReq, steamBody) => {
     res.setHeader('Content-Type', 'application/json');
