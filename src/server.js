@@ -113,17 +113,33 @@ app.use(function(req,res,next){
 app.get('/steam/player', (req,res) => {
   let id = req.session.passport.user.match(/\d+$/)[0]
   console.log(id);
+  console.log("get /steam/player")
   let url = "http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=" + process.env.STEAM_KEY + "&steamids=" + id
   request.get(url, (error, steamReq, steamBody) => {
     res.setHeader('Content-Type', 'application/json');
     res.send(steamBody);
+    console.log(steamBody)
   });
 });
 
 app.get('/steam/player/games', (req,res) => {
   let id = req.session.passport.user.match(/\d+$/)[0]
   console.log(id);
+  console.log("get /steam/player/games")
+
   let url = "http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=" + process.env.STEAM_KEY + "&steamid=" + id + "&include_appinfo=1&include_played_free_games=1&format=json"
+  request.get(url, (error, steamReq, steamBody) => {
+    res.setHeader('Content-Type', 'application/json');
+    res.send(steamBody);
+  });
+});
+
+app.get('/steam/player/bans', (req,res) => {
+  let id = req.session.passport.user.match(/\d+$/)[0]
+  console.log(id);
+  console.log("get /steam/player/bans")
+
+  let url = "http://api.steampowered.com/ISteamUser/GetPlayerBans/v1/?key=" +process.env.STEAM_KEY + "&steamids=" + id
   request.get(url, (error, steamReq, steamBody) => {
     res.setHeader('Content-Type', 'application/json');
     res.send(steamBody);
