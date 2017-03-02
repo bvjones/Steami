@@ -33,11 +33,11 @@ describe("<PlayerIdentity />", function() {
     playerSummary: api_response
   }
 
-  it("SteamId text is equal to the user's persona name", function() {
+  it("Renders user's Steam ID nickname", function() {
     expect(render(<PlayerIdentity {...props} />).text()).to.include('chinito!');
   });
 
-	it("SteamId avatar is equal to the user's avatar", () => {
+	it("Renders user's Steam ID avatar", () => {
   	const wrapper = shallow(<PlayerIdentity {...props} />);
   	const image = wrapper.find({src: 'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/da/da06adbb6979416158d991f426d8327a425f502b_medium.jpg'});
   	expect(image).to.have.length(1);
