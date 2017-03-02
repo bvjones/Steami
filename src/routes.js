@@ -1,16 +1,22 @@
 'use strict';
 
 import React from 'react'
-import { Route, IndexRoute } from 'react-router'
+import { Route, IndexRoute, Router } from 'react-router'
 import Layout from './components/Layout.jsx';
+import SignInPage from './components/SignInPage.jsx';
 import IndexPage from './components/IndexPage.jsx';
 import NotFoundPage from './components/NotFoundPage.jsx';
 
 const routes = (
- <Route path="/" component={Layout}>
-   <IndexRoute component={IndexPage}/>
-   <Route path="*" component={NotFoundPage}/>
- </Route>
+  <Router>
+  <Route path="/profile" component={Layout}>
+    <IndexRoute component={IndexPage}/>
+    <Route path="*" component={NotFoundPage}/>
+  </Route>
+    <Route path="/" component={SignInPage}>
+      <Route path="*" component={NotFoundPage}/>
+    </Route>
+  </Router>
 );
 
 export default routes;
