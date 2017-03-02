@@ -26,7 +26,7 @@ describe("<GamesPresentationContainer />", function() {
     games: api_response
   }
 
-  it("List of games is loaded correctly", function() {
+  it("Renders list of games", function() {
     expect(render(<GamesPresentationContainer {...props} />).text()).to.include('Counter-Strike: Global Offensive');
   });
 
