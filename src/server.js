@@ -41,7 +41,6 @@ var SteamStrategy = new OpenIDStrategy({
     // might need to create a user record in your database at this point if
     // the user doesn't already exist.
     function(identifier, done) {
-      console.log(identifier)
         // The done() function is provided by passport.  It's how we return
         // execution control back to passport.
         // Your database probably has its own asynchronous callback, so we're
@@ -111,7 +110,7 @@ app.use(function(req,res,next){
  next();
 });
 
-app.get('/steam/player/:id', (req,res) => {
+app.get('/steam/player', (req,res) => {
   let id = req.session.passport.user.match(/\d+$/)[0]
   console.log(id);
   let url = "http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=" + process.env.STEAM_KEY + "&steamids=" + id
@@ -121,7 +120,7 @@ app.get('/steam/player/:id', (req,res) => {
   });
 });
 
-app.get('/steam/player/:id/games', (req,res) => {
+app.get('/steam/player/games', (req,res) => {
   let id = req.session.passport.user.match(/\d+$/)[0]
   console.log(id);
   let url = "http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=" + process.env.STEAM_KEY + "&steamid=" + id + "&include_appinfo=1&include_played_free_games=1&format=json"
@@ -131,7 +130,7 @@ app.get('/steam/player/:id/games', (req,res) => {
   });
 });
 
-app.get('/steam/player/:id/achievements/:game_id', (req,res) => {
+app.get('/steam/player/achievements/:game_id', (req,res) => {
   let url = "http://api.steampowered.com/ISteamUserStats/GetPlayerAchievements/v0001/?appid=" + req.params.game_id + "&key=" + process.env.STEAM_KEY + "&steamid=" + req.params.id
   request.get(url, (error, steamReq, steamBody) => {
     res.setHeader('Content-Type', 'application/json');
