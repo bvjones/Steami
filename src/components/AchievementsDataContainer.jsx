@@ -10,7 +10,8 @@ export default class AchievementsDataContainer extends React.Component {
 
     this.state = {
       playerCompletedAchievements: [],
-      playerOutstandingAchievements: []
+      playerOutstandingAchievements: [],
+      gameHasAchievements: true
     };
   }
 
@@ -31,12 +32,16 @@ export default class AchievementsDataContainer extends React.Component {
       .then(res => {
         return res.json() })
           .then(json => {
-            gameAchArray = json.game.availableGameStats.achievements
+            if(json.game.hasOwnProperty('availableGameStats')) {
+              gameAchArray = json.game.availableGameStats.achievements
+            }
             fetch(`http://localhost:3000/steam/player/achievements/${this.props.gameId}`)
               .then(res => {
                 return res.json() })
                   .then(json => {
-                    playerAchArray = json.playerstats.achievements
+                    if(json.playerstats.hasOwnProperty('achievements')){
+                      playerAchArray = json.playerstats.achievements
+                    }
                     console.log('gameachievements populated?');
                     console.log(gameAchArray.length != 0)
                     console.log('playerachsievements populated?');
@@ -54,6 +59,8 @@ export default class AchievementsDataContainer extends React.Component {
                         }
                       );
                       this.setAchievementsState(mergedAchArray);
+                    } else {
+                      this.setState({ gameHasAchievements: false });
                     }
                   });
           });
@@ -77,7 +84,7 @@ export default class AchievementsDataContainer extends React.Component {
     console.log(this.state.playerCompletedAchievements);
     console.log(this.state.playerOutstandingAchievements);
     return (
-      <AchievementsPresentationContainer playerCompletedAchievements={this.state.playerCompletedAchievements} playerOutstandingAchievements={this.state.playerOutstandingAchievements} />
+      <AchievementsPresentationContainer playerCompletedAchievements={this.state.playerCompletedAchievements} playerOutstandingAchievements={this.state.playerOutstandingAchievements} gameHasAchievements={this.state.gameHasAchievements} />
     );
   }
 }
