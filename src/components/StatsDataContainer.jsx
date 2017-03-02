@@ -19,8 +19,6 @@ export default class StatsDataContainer extends React.Component {
         return res.json() })
           .then(json => {
             this.setState({ playerSummary: json })
-            console.log('set playerSummary state');
-            console.log(json);
           });
   }
 
