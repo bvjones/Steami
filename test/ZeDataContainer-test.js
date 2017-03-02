@@ -14,7 +14,7 @@ global.document = jsdom('');
 global.window = document.defaultView;
 
 describe('<GamesDataContainer />', () => {
-  it('calls componentDidMount', () => {
+  it('Calls componentDidMount', () => {
     sinon.spy(GamesDataContainer.prototype, 'componentDidMount');
     const wrapper = mount(<GamesDataContainer />);
     expect(GamesDataContainer.prototype.componentDidMount.calledOnce).to.equal(true);
@@ -22,7 +22,7 @@ describe('<GamesDataContainer />', () => {
 });
 
 describe('<BansDataContainer />', () => {
-  it('calls componentDidMount', () => {
+  it('Calls componentDidMount', () => {
     sinon.spy(BansDataContainer.prototype, 'componentDidMount');
     const wrapper = mount(<BansDataContainer />);
     expect(BansDataContainer.prototype.componentDidMount.calledOnce).to.equal(true);
@@ -30,7 +30,7 @@ describe('<BansDataContainer />', () => {
 });
 
 describe('<AchievementsDataContainer />', () => {
-  it('calls componentDidMount', () => {
+  it('Calls componentDidMount', () => {
     sinon.spy(AchievementsDataContainer.prototype, 'componentDidMount');
     const wrapper = mount(<AchievementsDataContainer />);
     expect(AchievementsDataContainer.prototype.componentDidMount.calledOnce).to.equal(true);
@@ -38,7 +38,7 @@ describe('<AchievementsDataContainer />', () => {
 });
 
 describe('<StatsDataContainer />', () => {
-  it('calls componentDidMount', () => {
+  it('Calls componentDidMount', () => {
     sinon.spy(StatsDataContainer.prototype, 'componentDidMount');
     const wrapper = mount(<StatsDataContainer />);
     expect(StatsDataContainer.prototype.componentDidMount.calledOnce).to.equal(true);
@@ -46,7 +46,7 @@ describe('<StatsDataContainer />', () => {
 });
 
 describe('<SingleGameDataContainer />', () => {
-  xit('calls componentDidMount', () => {
+  xit('Calls componentDidMount', () => {
     sinon.spy(SingleGameDataContainer.prototype, 'componentDidMount');
     const wrapper = mount(<SingleGameDataContainer />);
     expect(SingleGameDataContainer.prototype.componentDidMount.calledTwice).to.equal(true);
