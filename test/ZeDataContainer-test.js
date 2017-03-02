@@ -46,9 +46,9 @@ describe('<StatsDataContainer />', () => {
 });
 
 describe('<SingleGameDataContainer />', () => {
-  xit('Calls componentDidMount', () => {
+  it('Calls componentDidMount', () => {
     sinon.spy(SingleGameDataContainer.prototype, 'componentDidMount');
     const wrapper = mount(<SingleGameDataContainer />);
-    expect(SingleGameDataContainer.prototype.componentDidMount.calledTwice).to.equal(true);
+    expect(SingleGameDataContainer.prototype.componentDidMount.calledOnce).to.equal(true);
   });
 });
