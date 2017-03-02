@@ -150,7 +150,7 @@ app.get('/steam/games/:game_id/achievements', (req,res) => {
 app.post('/auth/openid', passport.authenticate('openid'));
 
 app.get('/auth/openid/return', passport.authenticate('openid', {
-   'successRedirect': '/',
+   'successRedirect': '/profile',
    'failureRedirect': '/auth/failure'
 }));
 
