@@ -146,7 +146,16 @@ app.get('/steam/player/bans', (req,res) => {
 });
 
 app.get('/steam/player/achievements/:game_id', (req,res) => {
-  let url = "http://api.steampowered.com/ISteamUserStats/GetPlayerAchievements/v0001/?appid=" + req.params.game_id + "&key=" + process.env.STEAM_KEY + "&steamid=" + req.params.id
+  let id = req.session.passport.user.match(/\d+$/)[0]
+  let url = "http://api.steampowered.com/ISteamUserStats/GetPlayerAchievements/v0001/?appid=" + req.params.game_id + "&key=" + process.env.STEAM_KEY + "&steamid=" + id
+  request.get(url, (error, steamReq, steamBody) => {
+    res.setHeader('Content-Type', 'application/json');
+    res.send(steamBody);
+  });
+});
+
+app.get('/steam/games/:game_id/schema', (req,res) => {
+  let url = "http://api.steampowered.com/ISteamUserStats/GetSchemaForGame/v2/?key=" + process.env.STEAM_KEY + "&appid=" + req.params.game_id
   request.get(url, (error, steamReq, steamBody) => {
     res.setHeader('Content-Type', 'application/json');
     res.send(steamBody);
