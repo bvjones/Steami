@@ -12,16 +12,12 @@ describe("<Index Page />", function() {
 });
 
 describe("<NavBar />", function() {
+  const wrapper = shallow(<IndexPage />);
   it("contains a class called home", function() {
-    const wrapper = shallow(<IndexPage />);
     expect(wrapper.find('.NavBar')).to.have.length(0);
     expect(wrapper.find(NavBar).render().find('.NavBar')).to.have.length(1);
   });
-});
-
-describe("<NavBar />", function() {
   it("contains components NavBar, StatContainer and GamesDataContainer", function() {
-    const wrapper = shallow(<IndexPage />);
     expect(wrapper.text()).to.equal('<NavBar /><StatContainer /><GamesDataContainer />');
   });
 });
