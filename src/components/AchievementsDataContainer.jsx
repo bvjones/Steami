@@ -14,42 +14,19 @@ export default class AchievementsDataContainer extends React.Component {
     };
   }
 
-  buildCompletedAchievements(gameAchArray, playerAchArray){
-    let array = playerAchArray.filter(function(ach) {
-      return ach.achieved == 1
-    });
-    array = array.map(
-      function(playerAch, i) {
-        let gameAch = gameAchArray[i]
-        return Object.assign(gameAch, playerAch);
-      }
-    );
-    console.log("ARRAY OF COMPLETED IS");
-    console.log(array);
-    this.setState({ playerCompletedAchievements: array })
+  setAchievementsState(mergedAchArray) {
+      let completedArray = mergedAchArray.filter(function(ach) {
+        return ach.achieved == 1
+      });
+      let outstandingArray = mergedAchArray.filter(function(ach) {
+        return ach.achieved == 0
+      });
+      this.setState({ playerCompletedAchievements: completedArray, playerOutstandingAchievements: outstandingArray })
   }
-
-
-  buildOustandingAchievements(gameAchArray, playerAchArray){
-    let array = playerAchArray.filter(function(ach) {
-      return ach.achieved == 0
-    });
-
-    array = array.map(
-      function(playerAch, i) {
-        let gameAch = gameAchArray[i]
-        return Object.assign(gameAch, playerAch);
-      }
-    );
-    console.log("ARRAY OF OUTSTANDING IS");
-    console.log(array);
-    this.setState({ playerOutstandingAchievements: array })
-  }
-
 
   componentDidMount() {
     let gameAchArray = [];
-    let playerAchArray = {};
+    let playerAchArray = [];
     fetch(`http://localhost:3000/steam/games/${this.props.gameId}/schema`)
       .then(res => {
         return res.json() })
@@ -60,18 +37,40 @@ export default class AchievementsDataContainer extends React.Component {
                 return res.json() })
                   .then(json => {
                     playerAchArray = json.playerstats.achievements
-                    // this.setState({ playerAchievements: playerAchArray, gameAchievements: gameAchArray })
-                    console.log('gameachievements populdated?');
+                    console.log('gameachievements populated?');
                     console.log(gameAchArray.length != 0)
-                    console.log('playerachsievements populdated?');
+                    console.log('playerachsievements populated?');
                     console.log(playerAchArray.length != 0)
                     if (gameAchArray.length != 0 && playerAchArray.length != 0) {
                       console.log('ABOUT TO RUN build of achievements arrays')
-                      this.buildCompletedAchievements(gameAchArray, playerAchArray);
-                      this.buildOustandingAchievements(gameAchArray, playerAchArray);
+                      gameAchArray = gameAchArray.sort(this.compareObjects);
+                      playerAchArray = playerAchArray.sort(this.compareObjects);
+                      console.log('sorted gameachArry is ', gameAchArray);
+                      console.log('sorted playerAchArray is ', playerAchArray);
+                      let mergedAchArray = playerAchArray.map(
+                        function(playerAch, i) {
+                          let gameAch = gameAchArray[i]
+                          return Object.assign(gameAch, playerAch);
+                        }
+                      );
+                      this.setAchievementsState(mergedAchArray);
                     }
                   });
           });
+  }
+
+  compareObjects(a,b) {
+    let field = 'apiname'
+    if (a.hasOwnProperty('name')) {
+      field = 'name';
+    }
+    if (a[field] < b[field]) {
+      return -1;
+    }
+    if (a[field] > b[field]) {
+      return 1;
+    }
+    return 0;
   }
 
   render() {
