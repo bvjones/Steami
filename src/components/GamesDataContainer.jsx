@@ -14,7 +14,7 @@ export default class GamesDataContainer extends React.Component {
   }
 
   componentDidMount() {
-    fetch("http://localhost:3000/steam/player/76561197980367679/games")
+    fetch("http://localhost:3000/steam/player/games")
       .then(res => {
         return res.json() })
           .then(json => {
