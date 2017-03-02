@@ -10,24 +10,67 @@ export default class AchievementsDataContainer extends React.Component {
 
     this.state = {
       gameAchievements: {},
-      playerAchievements: {}
+      playerAchievements: {},
+      playerCompletedAchievements: [],
+      playerOutstandingAchievements: []
     };
   }
 
+  buildCompletedAchievements(gameAchArray, playerAchArray){
+    let array = playerAchArray.filter(function(ach) {
+      return ach.achieved == 1
+    });
+    array = array.map(
+      function(playerAch, i) {
+        let gameAch = gameAchArray[i]
+        return Object.assign(gameAch, playerAch);
+      }
+    );
+    console.log("ARRAY OF COMPLETED IS");
+    console.log(array);
+  }
+
+
+  buildOustandingAchievements(gameAchArray, playerAchArray){
+    let array = playerAchArray.filter(function(ach) {
+      return ach.achieved == 0
+    });
+
+    array = array.map(
+      function(playerAch, i) {
+        let gameAch = gameAchArray[i]
+        return Object.assign(gameAch, playerAch);
+      }
+    );
+    console.log("ARRAY OF OUTSTANDING IS");
+    console.log(array);
+  }
+
+
   componentDidMount() {
+    let gameAchArray = [];
+    let playerAchArray = {};
     fetch(`http://localhost:3000/steam/games/${this.props.gameId}/schema`)
       .then(res => {
         return res.json() })
           .then(json => {
-            let achObj = json.game.availableGameStats.achievements
-            this.setState({ gameAchievements: achObj })
-          });
-    fetch(`http://localhost:3000/steam/player/achievements/${this.props.gameId}`)
-      .then(res => {
-        return res.json() })
-          .then(json => {
-            let achObj = json.playerstats.achievements
-            this.setState({ playerAchievements: achObj })
+            gameAchArray = json.game.availableGameStats.achievements
+            fetch(`http://localhost:3000/steam/player/achievements/${this.props.gameId}`)
+              .then(res => {
+                return res.json() })
+                  .then(json => {
+                    playerAchArray = json.playerstats.achievements
+                    // this.setState({ playerAchievements: playerAchArray, gameAchievements: gameAchArray })
+                    console.log('gameachievements populdated?');
+                    console.log(gameAchArray.length != 0)
+                    console.log('playerachsievements populdated?');
+                    console.log(playerAchArray.length != 0)
+                    if (gameAchArray.length != 0 && playerAchArray.length != 0) {
+                      console.log('ABOUT TO RUN build of achievements arrays')
+                      this.buildCompletedAchievements(gameAchArray, playerAchArray);
+                      this.buildOustandingAchievements(gameAchArray, playerAchArray);
+                    }
+                  });
           });
   }
 
