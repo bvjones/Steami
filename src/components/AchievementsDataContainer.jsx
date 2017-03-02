@@ -9,8 +9,6 @@ export default class AchievementsDataContainer extends React.Component {
     super(props);
 
     this.state = {
-      gameAchievements: {},
-      playerAchievements: {},
       playerCompletedAchievements: [],
       playerOutstandingAchievements: []
     };
@@ -28,6 +26,7 @@ export default class AchievementsDataContainer extends React.Component {
     );
     console.log("ARRAY OF COMPLETED IS");
     console.log(array);
+    this.setState({ playerCompletedAchievements: array })
   }
 
 
@@ -44,6 +43,7 @@ export default class AchievementsDataContainer extends React.Component {
     );
     console.log("ARRAY OF OUTSTANDING IS");
     console.log(array);
+    this.setState({ playerOutstandingAchievements: array })
   }
 
 
@@ -75,10 +75,10 @@ export default class AchievementsDataContainer extends React.Component {
   }
 
   render() {
-    console.log(this.state.gameAchievements);
-    console.log(this.state.playerAchievements);
+    console.log(this.state.playerCompletedAchievements);
+    console.log(this.state.playerOutstandingAchievements);
     return (
-      <AchievementsPresentationContainer gameAchievements={this.state.gameAchievements} playerAchievements={this.state.playerAchievements} />
+      <AchievementsPresentationContainer playerCompletedAchievements={this.state.playerCompletedAchievements} playerOutstandingAchievements={this.state.playerOutstandingAchievements} />
     );
   }
 }

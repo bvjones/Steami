@@ -6,7 +6,7 @@ import fetch from 'node-fetch'
 export default class AchievementsPresentationContainer extends React.Component {
 
   loadAchievements() {
-    if ( Object.keys(this.props.gameAchievements).length === 0 || Object.keys(this.props.playerAchievements).length === 0) {
+    if (this.props.playerCompletedAchievements.length === 0 || this.props.playerOutstandingAchievements.length === 0) {
       return "Loading..."
     } else {
       return (
@@ -17,7 +17,11 @@ export default class AchievementsPresentationContainer extends React.Component {
     }
   }
 
-
+  renderAchievementComponents(achievements) {
+    return achievements.map(
+      (ach, i) => <Achievement key={i} {...ach}/>
+    );
+  }
 
   render() {
     let content = this.loadAchievements();
