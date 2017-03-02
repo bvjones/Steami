@@ -38,7 +38,7 @@ describe("<PlayerIdentity />", function() {
   });
 
 	it("SteamId avatar is equal to the user's avatar", () => {
-  	const wrapper = shallow(<PlayerIdentity {...props}/>);
+  	const wrapper = shallow(<PlayerIdentity {...props} />);
   	const image = wrapper.find({src: 'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/da/da06adbb6979416158d991f426d8327a425f502b_medium.jpg'});
   	expect(image).to.have.length(1);
 	});
