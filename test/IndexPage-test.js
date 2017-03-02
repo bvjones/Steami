@@ -16,9 +16,4 @@ describe("<Index Page />", function() {
     expect(wrapper.text()).to.equal('<StatsDataContainer /><GamesDataContainer />');
   });
 
-  xit("NAVBAR LENGTH IS 1 WHEN RENDERED (???)", function() {
-    expect(wrapper.find('.PlayerIdentity')).to.have.length(0);
-    expect(wrapper.find(PlayerIdentity).render().find('.PlayerIdentity')).to.have.length(1);
-  });
-
 });

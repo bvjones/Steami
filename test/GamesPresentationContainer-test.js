@@ -19,7 +19,6 @@ var api_response = {
 	}
 }
 
-var game_name = api_response.response.games[0].name
 
 describe("<GamesPresentationContainer />", function() {
 
