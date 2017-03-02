@@ -12,7 +12,7 @@ describe("<Index Page />", function() {
     expect(shallow(<IndexPage />).hasClass('home')).to.equal(true);
   });
 
-  it("contains components PlayerIdentity, StatDataContainer and GamesDataContainer", function() {
+  it("contains components StatDataContainer and GamesDataContainer", function() {
     expect(wrapper.text()).to.equal('<StatsDataContainer /><GamesDataContainer />');
   });
 
