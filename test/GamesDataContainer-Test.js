@@ -10,7 +10,6 @@ global.window = document.defaultView;
 
 
 describe('<GamesDataContainer />', () => {
-
   it('calls componentDidMount', () => {
     sinon.spy(GamesDataContainer.prototype, 'componentDidMount');
     const wrapper = mount(<GamesDataContainer />);
