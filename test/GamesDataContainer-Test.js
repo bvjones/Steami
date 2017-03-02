@@ -4,7 +4,7 @@ import { mount } from 'enzyme';
 import sinon from 'sinon';
 import GamesDataContainer from '../src/components/GamesDataContainer.jsx';
 
-var jsdom = require('jsdom').jsdom;
+import {jsdom} from 'jsdom';
 global.document = jsdom('');
 global.window = document.defaultView;
 
