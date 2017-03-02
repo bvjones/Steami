@@ -21,5 +21,4 @@ describe("<Index Page />", function() {
     expect(wrapper.find(NavBar).render().find('.NavBar')).to.have.length(1);
   });
 
-
 });
