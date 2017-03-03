@@ -12,6 +12,5 @@ export default class Game extends React.Component {
           <img className="game-image" src={`http://media.steampowered.com/steamcommunity/public/images/apps/${this.props.appid}/${this.props.img_logo_url}.jpg`}></img>
         </li>
       </Link>
-    )
-  }
+    )  }
 }
