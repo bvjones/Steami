@@ -6,7 +6,11 @@ export default class BansPresentationContainer extends React.Component {
 
   loadBans() {
     if ( Object.keys(this.props.bans).length === 0) {
-      return "Loading..."
+      return (
+        <div className="d-flex justify-content-center">
+          <img src="/img/loading_icon.svg" className="loading-icon align-self-center" />
+        </div>
+      )
     } else {
       return (
         <div className="d-flex justify-content-center my-2">

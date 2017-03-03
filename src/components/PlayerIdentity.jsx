@@ -6,7 +6,11 @@ export default class PlayerIdentity extends React.Component {
 
   loadPlayerIdentity() {
     if ( Object.keys(this.props.playerSummary).length === 0) {
-      return "Loading..."
+      return (
+        <div className="d-flex justify-content-center">
+          <img src="/img/loading_icon.svg" className="loading-icon align-self-center" />
+        </div>
+      )
     } else {
       return (
         <div className="d-flex align-items-center pl-2 mt-2">
