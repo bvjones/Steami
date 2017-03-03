@@ -6,8 +6,22 @@
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+  font-size: .9rem;
+  text-align: center;
+  margin-bottom: 0px;
+  color: $text-color;
+  &:hover {
+    color: $text-color;
+  }
+  &:focus {
+    color: $text-color;
+  }
+  &:active {
+    color: $text-color;
+  }
 }
 
 .game-flex-item {
   width: 184px;
+  background-color: $game-background-color;
 }
