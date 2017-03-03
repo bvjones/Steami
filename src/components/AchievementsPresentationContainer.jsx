@@ -18,11 +18,11 @@ export default class AchievementsPresentationContainer extends React.Component {
       let outstanding = this.renderAchievementComponents(this.props.playerOutstandingAchievements);
       return (
       <div>
-        <h2>Completed</h2>
+        <h2>Completed <span className="ach-count">({ this.props.playerCompletedAchievements.length })</span></h2>
         <div className="d-flex flex-wrap justify-content-center mt-3 px-5">
             { completed }
         </div>
-        <h2>Outstanding</h2>
+        <h2>Outstanding <span className="ach-count">({ this.props.playerOutstandingAchievements.length })</span></h2>
         <div className="d-flex flex-wrap justify-content-center mt-3 px-5">
             { outstanding }
         </div>

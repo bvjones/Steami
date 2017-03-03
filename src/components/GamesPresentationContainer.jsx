@@ -7,7 +7,7 @@ export default class GamesPresentationContainer extends React.Component {
 
   loadGames() {
     if ( Object.keys(this.props.games).length === 0) {
-        return <img src="/img/loading_icon.svg" className="loading-icon align-self-center" />
+      return <img src="/img/loading_icon.svg" className="loading-icon align-self-center" />
     } else {
       return this.renderGamesComponents();
     }
@@ -19,11 +19,20 @@ export default class GamesPresentationContainer extends React.Component {
     );
   }
 
+  getGamesCount(){
+    if ( Object.keys(this.props.games).length === 0) {
+      return 0
+    } else {
+      return this.props.games.response.games.length;
+    }
+  }
+
   render() {
     let content = this.loadGames();
+    let gameCount = this.getGamesCount();
     return (
       <div className="games-presentation-container">
-        <h1 className="Games">Games</h1>
+        <h2 className="Games">Games <span className="ach-count">({ gameCount })</span></h2>
           <div className="games-list d-flex flex-wrap justify-content-center mt-3 px-5">
               { content }
           </div>
