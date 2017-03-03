@@ -28,3 +28,18 @@
     text-decoration: none;
   }
 }
+
+
+.no-image-replacer {
+  color: $text-color;
+  &:hover {
+    color: $text-color;
+    text-decoration: none;
+  }
+  &:focus {
+    color: $text-color;
+  }
+  &:active {
+    color: $text-color;
+  }
+}

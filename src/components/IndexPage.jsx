@@ -7,7 +7,7 @@ import GamesDataContainer from './GamesDataContainer.jsx'
 export default class IndexPage extends React.Component {
   render() {
     return (
-      <div className="home">
+      <div className="home pt-2 pb-5">
         {<StatsDataContainer/>}
         {<GamesDataContainer/>}
       </div>

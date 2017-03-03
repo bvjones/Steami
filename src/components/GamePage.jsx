@@ -17,7 +17,7 @@ export default class GamePage extends React.Component {
 
   render() {
     return (
-      <div className="game-view">
+      <div className="game-view pt-2 pb-5">
         {<SingleGameDataContainer gameId={this.state.gameId} />}
         {<AchievementsDataContainer gameId={this.state.gameId} />}
       </div>
