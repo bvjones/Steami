@@ -1,11 +1,11 @@
 {
   "name": "steami",
-  "version": "1.0.0",
+  "version": "3.10.10",
   "description": "Stream profile app",
   "main": "index.js",
   "scripts": {
     "test": "mocha --compilers js:babel-core/register",
-    "start": "NODE_ENV=production node_modules/.bin/babel-node --presets react,es2015 src/server.js"
+    "start": "NODE_ENV=production ./node_modules/.bin/babel-node --presets react,es2015 src/server.js"
   },
   "repository": {
     "type": "git",
@@ -63,7 +63,7 @@
     "webpack-dev-server": "^2.4.1"
   },
   "engines": {
-    "node": "7.5.0"
+    "node": "6.10.0"
   }
 
 }
