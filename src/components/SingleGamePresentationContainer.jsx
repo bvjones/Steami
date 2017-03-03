@@ -7,7 +7,11 @@ export default class SingleGamePresentationContainer extends React.Component {
 
   loadGame() {
     if ( Object.keys(this.props.gameData).length === 0) {
-      return <img src="/img/loading_icon.svg" className="loading-icon align-self-center" />
+      return (
+        <div className="d-flex justify-content-center">
+          <img src="/img/loading_icon.svg" className="loading-icon align-self-center" />
+        </div>
+      )
     } else {
       return (
         <div>

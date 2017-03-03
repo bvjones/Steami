@@ -9,7 +9,11 @@ export default class AchievementsPresentationContainer extends React.Component {
   loadAchievements() {
     if (this.props.playerCompletedAchievements.length === 0 && this.props.playerOutstandingAchievements.length === 0) {
       if (this.props.gameHasAchievements) {
-        return <img src="/img/loading_icon.svg" className="loading-icon align-self-center" />
+        return (
+          <div className="d-flex justify-content-center">
+            <img src="/img/loading_icon.svg" className="loading-icon align-self-center" />
+          </div>
+        )
       } else {
         return "No achievements listed for this game"
       }
