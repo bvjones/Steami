@@ -7,7 +7,7 @@ export default class GamesPresentationContainer extends React.Component {
 
   loadGames() {
     if ( Object.keys(this.props.games).length === 0) {
-      return "Loading..."
+        return <img src="/img/loading_icon.svg" className="loading-icon align-self-center" />
     } else {
       return this.renderGamesComponents();
     }
