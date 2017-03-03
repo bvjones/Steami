@@ -9,9 +9,9 @@ export default class PlayerIdentity extends React.Component {
       return "Loading..."
     } else {
       return (
-        <div>
-          <img className="SteamAvatar" src={this.props.playerSummary.response.players[0].avatarmedium}/>
-          <h1 className="SteamId">{this.props.playerSummary.response.players[0].personaname}</h1>
+        <div className="d-flex align-items-center pl-2">
+          <img className="steam-avatar" src={this.props.playerSummary.response.players[0].avatarmedium}/>
+          <h1 className="steam-id">{this.props.playerSummary.response.players[0].personaname}</h1>
         </div>
       );
     }
