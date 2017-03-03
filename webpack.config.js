@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const path = require('path');
+var nodeModules = path.resolve(path.join(__dirname, 'node_modules'));
 
 module.exports = {
   entry: path.join(__dirname, 'src', 'app-client.js'),
@@ -12,14 +13,23 @@ module.exports = {
     preLoaders: [
           { test: /\.json$/, loader: "json-loader"}
         ],
-    loaders: [{
-      test: path.join(__dirname, 'src'),
-      loader: ['babel-loader'],
-      query: {
-        cacheDirectory: 'babel_cache',
-        presets: ['react', 'es2015', "stage-0"]
+    loaders: [
+      {
+        test: path.join(__dirname, 'src'),
+        loader: ['babel-loader'],
+        query: {
+          cacheDirectory: 'babel_cache',
+          presets: ['react', 'es2015', "stage-0"]
+        }
+      },
+      {
+        test: /\.scss$/,
+        loaders: [ 'style', 'css', 'sass' ]
       }
-    }]
+  ]
+  },
+  sassLoader: {
+    includePaths: [ 'src/static/styles' ]
   },
   plugins: [
     new webpack.DefinePlugin({
