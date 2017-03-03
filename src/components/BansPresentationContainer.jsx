@@ -9,9 +9,9 @@ export default class BansPresentationContainer extends React.Component {
       return "Loading..."
     } else {
       return (
-        <div>
-          <li>{this.props.bans.players[0].NumberOfVACBans} bans</li>
-          <li>{this.props.bans.players[0].DaysSinceLastBan} days since last ban</li>
+        <div className="d-flex justify-content-center my-2">
+          <span className="mx-3">{this.props.bans.players[0].NumberOfVACBans} BANS</span>
+          <span className="mx-3">{this.props.bans.players[0].DaysSinceLastBan} DAYS SINCE LAST BAN</span>
         </div>
       );
     }
@@ -20,9 +20,9 @@ export default class BansPresentationContainer extends React.Component {
   render() {
     let content = this.loadBans();
     return (
-      <ul>
+      <div>
         { content }
-      </ul>
+      </div>
     );
   }
 }
