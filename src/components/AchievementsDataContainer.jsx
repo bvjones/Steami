@@ -42,16 +42,9 @@ export default class AchievementsDataContainer extends React.Component {
                     if(json.playerstats.hasOwnProperty('achievements')){
                       playerAchArray = json.playerstats.achievements
                     }
-                    console.log('gameachievements populated?');
-                    console.log(gameAchArray.length != 0)
-                    console.log('playerachsievements populated?');
-                    console.log(playerAchArray.length != 0)
                     if (gameAchArray.length != 0 && playerAchArray.length != 0) {
-                      console.log('ABOUT TO RUN build of achievements arrays')
                       gameAchArray = gameAchArray.sort(this.compareObjects);
                       playerAchArray = playerAchArray.sort(this.compareObjects);
-                      console.log('sorted gameachArry is ', gameAchArray);
-                      console.log('sorted playerAchArray is ', playerAchArray);
                       let mergedAchArray = playerAchArray.map(
                         function(playerAch, i) {
                           let gameAch = gameAchArray[i]
@@ -81,8 +74,6 @@ export default class AchievementsDataContainer extends React.Component {
   }
 
   render() {
-    console.log(this.state.playerCompletedAchievements);
-    console.log(this.state.playerOutstandingAchievements);
     return (
       <AchievementsPresentationContainer playerCompletedAchievements={this.state.playerCompletedAchievements} playerOutstandingAchievements={this.state.playerOutstandingAchievements} gameHasAchievements={this.state.gameHasAchievements} />
     );
