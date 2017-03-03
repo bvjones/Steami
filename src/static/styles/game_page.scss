@@ -24,4 +24,7 @@
 .game-flex-item {
   width: 184px;
   background-color: $game-background-color;
+  &:hover {
+    text-decoration: none;
+  }
 }

@@ -19,13 +19,13 @@ export default class AchievementsPresentationContainer extends React.Component {
       return (
       <div>
         <h2>Completed</h2>
-        <ul>
-          { completed }
-        </ul>
+        <div className="d-flex flex-wrap justify-content-center mt-3 px-5">
+            { completed }
+        </div>
         <h2>Outstanding</h2>
-        <ul>
-          { outstanding }
-        </ul>
+        <div className="d-flex flex-wrap justify-content-center mt-3 px-5">
+            { outstanding }
+        </div>
       </div>
       )
     }
