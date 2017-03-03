@@ -1,0 +1,18 @@
+.sign-in-container {
+  margin-top: 20%;
+}
+
+#sign_in_button {
+ background: url(/img/steam_sign_in.png);
+ border: 0;
+ display: block;
+ height: 66px;
+ width: 109px;
+ cursor: pointer;
+ box-shadow: 0px 0px 12px 5px $light-highlight;
+ transition: 0.7s ease;
+ border-radius: 9%;
+ &:hover {
+   box-shadow: 0px 0px 40px 20px $light-highlight;
+ }
+}
