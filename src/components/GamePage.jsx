@@ -4,7 +4,7 @@ import React from 'react'
 import SingleGameDataContainer from './SingleGameDataContainer.jsx'
 import AchievementsDataContainer from './AchievementsDataContainer.jsx'
 
-import { Link } from 'react-router'
+
 
 export default class GamePage extends React.Component {
   constructor(props) {
@@ -17,8 +17,7 @@ export default class GamePage extends React.Component {
 
   render() {
     return (
-      <div className="game-view">
-        <Link to="/profile">My Profile</Link>
+      <div className="game-view pt-2 pb-5">
         {<SingleGameDataContainer gameId={this.state.gameId} />}
         {<AchievementsDataContainer gameId={this.state.gameId} />}
       </div>
