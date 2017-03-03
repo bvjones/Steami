@@ -1,3 +1,13 @@
 .steam-id {
   margin-bottom: 0;
 }
+
+.game-name {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.game-flex-item {
+  width: 184px;
+}

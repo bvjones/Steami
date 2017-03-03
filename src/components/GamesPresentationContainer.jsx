@@ -24,12 +24,8 @@ export default class GamesPresentationContainer extends React.Component {
     return (
       <div className="games-presentation-container">
         <h1 className="Games">Games</h1>
-          <div className="GamesList">
-            <ul>
+          <div className="games-list d-flex flex-wrap justify-content-center mt-3 px-5">
               { content }
-            </ul>
-            <img className="GameImageN"/>
-            <h3 className="GameN">GameN</h3>
           </div>
       </div>
     );
