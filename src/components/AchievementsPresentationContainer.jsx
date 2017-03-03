@@ -9,7 +9,11 @@ export default class AchievementsPresentationContainer extends React.Component {
   loadAchievements() {
     if (this.props.playerCompletedAchievements.length === 0 && this.props.playerOutstandingAchievements.length === 0) {
       if (this.props.gameHasAchievements) {
-        return <img src="/img/loading_icon.svg" className="loading-icon align-self-center" />
+        return (
+          <div className="d-flex justify-content-center">
+            <img src="/img/loading_icon.svg" className="loading-icon align-self-center" />
+          </div>
+        )
       } else {
         return "No achievements listed for this game"
       }
@@ -18,14 +22,14 @@ export default class AchievementsPresentationContainer extends React.Component {
       let outstanding = this.renderAchievementComponents(this.props.playerOutstandingAchievements);
       return (
       <div>
-        <h2>Completed</h2>
-        <ul>
-          { completed }
-        </ul>
-        <h2>Outstanding</h2>
-        <ul>
-          { outstanding }
-        </ul>
+        <h2>Completed <span className="ach-count">({ this.props.playerCompletedAchievements.length })</span></h2>
+        <div className="d-flex flex-wrap justify-content-center mt-3 px-5">
+            { completed }
+        </div>
+        <h2>Outstanding <span className="ach-count">({ this.props.playerOutstandingAchievements.length })</span></h2>
+        <div className="d-flex flex-wrap justify-content-center mt-3 px-5">
+            { outstanding }
+        </div>
       </div>
       )
     }
