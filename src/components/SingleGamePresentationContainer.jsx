@@ -5,6 +5,18 @@ import { Link } from 'react-router'
 
 export default class SingleGamePresentationContainer extends React.Component {
 
+  getImage() {
+    if (this.props.gameData.img_logo_url === "") {
+      return (
+        <h2 className="no-image-replacer text-center py-2 pr-3"> ? </h2>
+      )
+    } else {
+      return (
+        <img className="single-game-image" src={`http://media.steampowered.com/steamcommunity/public/images/apps/${this.props.gameData.appid}/${this.props.gameData.img_logo_url}.jpg`}/>
+      )
+    }
+  }
+
   loadGame() {
     if ( Object.keys(this.props.gameData).length === 0) {
       return (
@@ -13,10 +25,11 @@ export default class SingleGamePresentationContainer extends React.Component {
         </div>
       )
     } else {
+      let image = this.getImage();
       return (
         <div>
           <div className='d-flex align-items-center justify-content-start pl-2 mt-2 flex-wrap'>
-            <img className="single-game-image" src={`http://media.steampowered.com/steamcommunity/public/images/apps/${this.props.gameData.appid}/${this.props.gameData.img_logo_url}.jpg`}/>
+            { image }
             <h1 className="single-game-title no-bottom-margin pl-3 my-1">{this.props.gameData.name}</h1>
             <Link to="/profile" className="ml-auto navigation-link py-1 px-3 hover-box-shadow">Back to Profile</Link>
           </div>
