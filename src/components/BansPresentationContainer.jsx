@@ -13,7 +13,7 @@ export default class BansPresentationContainer extends React.Component {
       )
     } else {
       return (
-        <div className="d-flex justify-content-center my-2">
+        <div className="d-flex justify-content-center my-3 flex-wrap">
           <span className="mx-3">{this.props.bans.players[0].NumberOfVACBans} BANS</span>
           <span className="mx-3">{this.props.bans.players[0].DaysSinceLastBan} DAYS SINCE LAST BAN</span>
         </div>

@@ -4,6 +4,7 @@ $light-highlight: #abafb9;
 $text-color: rgb(226, 226, 226);
 $transparent-text: rgba(226, 226, 226, 0.51);
 $game-background-color: darken($dark-bkgrnd, 20%);
+$steam-blue: #67c1f5;
 
 
 html {
@@ -27,4 +28,25 @@ body {
 
 .no-bottom-margin {
   margin-bottom: 0;
+}
+
+.navigation-link {
+  background-color: $dark-bkgrnd;
+  color: $steam-blue;
+  border: 1px solid $steam-blue;
+  border-radius: 5%;
+  transition: 0.7s ease;
+  &:hover {
+    color: $dark-bkgrnd;
+    background-color: $steam-blue;
+    text-decoration: none;
+  }
+  &:focus {
+    color: $dark-bkgrnd;
+    background-color: $steam-blue;
+  }
+  &:active {
+    color: $dark-bkgrnd;
+    background-color: $steam-blue;
+  }
 }

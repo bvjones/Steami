@@ -12,6 +12,7 @@
   color: $text-color;
   &:hover {
     color: $text-color;
+    text-decoration: none;
   }
   &:focus {
     color: $text-color;
@@ -30,7 +31,7 @@
 }
 
 
-.no-image-replacer {
+.no-image-replacer, .game-link {
   color: $text-color;
   &:hover {
     color: $text-color;

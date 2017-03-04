@@ -15,7 +15,9 @@ export default class AchievementsPresentationContainer extends React.Component {
           </div>
         )
       } else {
-        return "No achievements listed for this game"
+        return (
+          <h4 className="text-center mt-5">NO ACHIEVEMENTS LISTED FOR THIS GAME</h4>
+        )
       }
     } else {
       let completed = this.renderAchievementComponents(this.props.playerCompletedAchievements);
