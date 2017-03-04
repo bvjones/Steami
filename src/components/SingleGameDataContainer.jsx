@@ -14,7 +14,7 @@ export default class SingleGameDataContainer extends React.Component {
   }
 
   componentDidMount() {
-    fetch("http://localhost:3000/steam/player/games")
+    fetch(`${window.location.origin}/steam/player/games`)
       .then(res => {
         return res.json() })
           .then(json => {

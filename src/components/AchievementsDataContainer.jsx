@@ -28,7 +28,7 @@ export default class AchievementsDataContainer extends React.Component {
   componentDidMount() {
     let gameAchArray = [];
     let playerAchArray = [];
-    fetch(`http://localhost:3000/steam/games/${this.props.gameId}/schema`)
+    fetch(`${window.location.origin}/steam/games/${this.props.gameId}/schema`)
       .then(res => {
         return res.json() })
           .then(json => {
@@ -37,7 +37,7 @@ export default class AchievementsDataContainer extends React.Component {
                 gameAchArray = json.game.availableGameStats.achievements
               }
             }
-            fetch(`http://localhost:3000/steam/player/achievements/${this.props.gameId}`)
+            fetch(`${window.location.origin}/steam/player/achievements/${this.props.gameId}`)
               .then(res => {
                 return res.json() })
                   .then(json => {
