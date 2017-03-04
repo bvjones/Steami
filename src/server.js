@@ -37,8 +37,8 @@ var SteamStrategy = new OpenIDStrategy({
         providerURL: 'http://steamcommunity.com/openid',
         stateless: true,
         // How the OpenID provider should return the client to us
-        returnURL: "http://"+domain+":"+port+"/auth/openid/return",
-        realm: "http://"+domain+":"+port+"/",
+        returnURL: "http://"+domain+"/auth/openid/return",
+        realm: "http://"+domain+"/",
     },
     function(identifier, done) {
             var user = {
