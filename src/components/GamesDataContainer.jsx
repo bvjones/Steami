@@ -18,8 +18,20 @@ export default class GamesDataContainer extends React.Component {
       .then(res => {
         return res.json() })
           .then(json => {
+            json.response.games = json.response.games.sort(this.compareGamesbyName);
             this.setState({ games: json })
           });
+  }
+
+  compareGamesbyName(a,b) {
+    let field = 'name'
+    if (a[field] < b[field]) {
+      return -1;
+    }
+    if (a[field] > b[field]) {
+      return 1;
+    }
+    return 0;
   }
 
   render() {
