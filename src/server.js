@@ -213,5 +213,5 @@ server.listen(port, err => {
   if (err) {
     return console.error(err);
   }
-  console.info(`Server running on http://${domain}:${port} [${env}]`);
+  console.info(`Server running on http://${domain}, port ${port} [${env}]`);
 });
