@@ -7,7 +7,8 @@ import Express from 'express';
 //Require Mongo Connection
 import mongo from 'mongodb';
 import monk from 'monk';
-var db = monk('localhost:27017/steami_test');
+const mongoURL = process.env.MONGO_URL || 'mongodb://localhost:27017/steami_test'
+var db = monk(mongoURL);
 //require session storage and db connection
 import session from 'express-session'
 import MongodbStoreFactory from 'connect-mongodb-session'
@@ -47,7 +48,7 @@ var SteamStrategy = new OpenIDStrategy({
             };
             return done(null, user);
     });
-    
+
 passport.use(SteamStrategy);
 
 passport.serializeUser(function(user, done) {
@@ -74,7 +75,7 @@ app.use(Express.static(path.join(__dirname, 'static')));
 //Set up Sessions
 var store = new MongoDBStore(
    {
-     uri: 'mongodb://localhost:27017/steami_test',
+     uri: mongoURL,
      collection: 'mySessions'
    });
 
