@@ -4,6 +4,16 @@ import React from 'react'
 
 export default class BansPresentationContainer extends React.Component {
 
+  getDaysSinceLastBanElement() {
+    if (this.props.bans.players[0].NumberOfVACBans === 0) {
+      return ""
+    } else {
+      return (
+        <span className="mx-3">{this.props.bans.players[0].DaysSinceLastBan} DAYS SINCE LAST BAN</span>
+      )
+    }
+  }
+
   loadBans() {
     if ( Object.keys(this.props.bans).length === 0) {
       return (
@@ -12,10 +22,11 @@ export default class BansPresentationContainer extends React.Component {
         </div>
       )
     } else {
+      let daysSinceLastBan = this.getDaysSinceLastBanElement();
       return (
         <div className="d-flex justify-content-center my-3 flex-wrap">
           <span className="mx-3">{this.props.bans.players[0].NumberOfVACBans} BANS</span>
-          <span className="mx-3">{this.props.bans.players[0].DaysSinceLastBan} DAYS SINCE LAST BAN</span>
+          { daysSinceLastBan }
         </div>
       );
     }
