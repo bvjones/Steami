@@ -22,6 +22,9 @@ import NotFoundPage from './components/NotFoundPage';
 import {Strategy as OpenIDStrategy} from 'passport-openid';
 import passport from 'passport';
 
+//Save the current PORT to use dynamically within the server
+const port = process.env.PORT || 3000;
+const domain = process.env.APP_DOMAIN || 'localhost'
 // initialize the server and configure support for ejs templates
 const app = new Express();
 const server = new Server(app);
@@ -33,31 +36,18 @@ var SteamStrategy = new OpenIDStrategy({
         providerURL: 'http://steamcommunity.com/openid',
         stateless: true,
         // How the OpenID provider should return the client to us
-        returnURL: 'http://localhost:3000/auth/openid/return',
-        realm: 'http://localhost:3000/',
+        returnURL: "http://"+domain+":"+port+"/auth/openid/return",
+        realm: "http://"+domain+":"+port+"/",
     },
-    // This is the "validate" callback, which returns whatever object you think
-    // should represent your user when OpenID authentication succeeds.  You
-    // might need to create a user record in your database at this point if
-    // the user doesn't already exist.
     function(identifier, done) {
-        // The done() function is provided by passport.  It's how we return
-        // execution control back to passport.
-        // Your database probably has its own asynchronous callback, so we're
-        // faking that with nextTick() for demonstration.
-        // process.nextTick(function () {
-        //     // Retrieve user from Firebase and return it via done().
             var user = {
                 identifier: identifier,
                 // Extract the Steam ID from the Claimed ID ("identifier")
                 steamId: identifier.match(/\d+$/)[0]
             };
-        //     // In case of an error, we invoke done(err).
-        //     // If we cannot find or don't like the login attempt, we invoke
-        //     // done(null, false).
-        //     // If everything went fine, we invoke done(null, user).
             return done(null, user);
     });
+    
 passport.use(SteamStrategy);
 
 passport.serializeUser(function(user, done) {
@@ -215,17 +205,12 @@ app.get('*', (req, res) => {
   );
 });
 
-// //BASIC SERVER ROUTE FOR INITIAL SETUP
-// app.get('*', (req, res) => {
-//   return res.render('index');
-// });
-
 // start the server
-const port = process.env.PORT || 3000;
+
 const env = process.env.NODE_ENV || 'production';
 server.listen(port, err => {
   if (err) {
     return console.error(err);
   }
-  console.info(`Server running on http://localhost:${port} [${env}]`);
+  console.info(`Server running on http://${domain}:${port} [${env}]`);
 });
