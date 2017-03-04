@@ -26,7 +26,7 @@ describe("<SingleGamePresentationContainer />", function() {
   });
 
 	it("Renders the hours played", () => {
-		expect(render(<SingleGamePresentationContainer {...props} />).text()).to.include('1311.2166666666667');
+		expect(render(<SingleGamePresentationContainer {...props} />).text()).to.include('1311');
   });
 
   it("Renders the game's logo", () => {
