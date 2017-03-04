@@ -33,7 +33,9 @@ export default class AchievementsDataContainer extends React.Component {
         return res.json() })
           .then(json => {
             if(json.game.hasOwnProperty('availableGameStats')) {
-              gameAchArray = json.game.availableGameStats.achievements
+              if(json.game.availableGameStats.hasOwnProperty('achievements')) {
+                gameAchArray = json.game.availableGameStats.achievements
+              }
             }
             fetch(`http://localhost:3000/steam/player/achievements/${this.props.gameId}`)
               .then(res => {
