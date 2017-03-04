@@ -14,7 +14,7 @@ export default class BansDataContainer extends React.Component {
   }
 
   componentDidMount() {
-    fetch("http://localhost:3000/steam/player/bans")
+    fetch(`${window.location.origin}/steam/player/bans`)
       .then(res => {
         return res.json() })
           .then(json => {

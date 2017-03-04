@@ -14,7 +14,7 @@ export default class StatsDataContainer extends React.Component {
   }
 
   componentDidMount() {
-    fetch("http://localhost:3000/steam/player")
+    fetch(`${window.location.origin}/steam/player`)
       .then(res => {
         return res.json() })
           .then(json => {
